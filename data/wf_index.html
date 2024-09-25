@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="wf_styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="form">
+        <div class="tab-content">
+            <div id="signup">
+                <h1>Set up Wi-Fi</h1>
+
+                <form action="/" method="post">
+                    <div class="field-wrap">
+                        <label for="credentials">
+                          WiFi SSID<span class="req">*</span>
+                        </label>
+                        <br>
+                        <select name="credentials" id="credentials">
+                          
+                        </select>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                          Password<span class="req">*</span>
+                        </label>
+                        <input id="pwd" type="password" required autocomplete="off" />
+                    </div>
+
+                    <button id="submitBtn" class="button button-disable button-block" disabled />Connect</button>
+
+                    <div class="field-wrap">
+                        <h2 id="statusLabel">Initiating...</h2>
+                    </div>
+                </form>
+
+            </div>
+
+            <div id="login">
+
+
+            </div>
+
+        </div>
+        <!-- tab-content -->
+
+    </div>
+    <!-- /form -->
+    <script>
+        function addScript( src , cb ) {
+          let s = document.createElement( 'script' );
+          s.setAttribute( 'src', src );
+          //s.onload=callback;
+          document.body.appendChild( s );
+          setTimeout( function(){cb();} , 350 );
+        }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            //setTimeout( function() {
+            //    addScript("jquery.js")
+            //} , 100 );
+            addScript("jquery.js",  function() {
+
+                setTimeout( function() {
+                    addScript("conn_evt.js", function() {
+                            addScript("b2f_local.js" , function() {
+                                addScript("f2b_local.js" ,  function() {
+                                    addScript("esp_mango_local.js"  , function() {
+                                        addScript("wf_index.js",  function() {
+                                            webSocketEvent(requestWiFiCredentials);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                }, 500 )   
+            } );
+             
+        })
+    </script>
+    <!--<script src="jquery.js"></script>
+    <script src="esp_mango_local.js"></script>
+    <script src="b2f_local.js"></script>
+    <script src="f2b_local.js"></script>
+    <script src="conn_evt.js"></script>-->
+    <!--<script src="wf_index.js"></script>-->
+</body>
+
+</html>
